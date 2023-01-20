@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home</title>
+  
+    <link rel="stylesheet" href="stile.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        .grid{display: flex; flex-wrap: wrap; max-width: 1250px; margin: 0 auto}
+        .col-50{width:50%}
+        .pb-4{padding-bottom: 4rem;}
+        .mt-4{margin-top: 4rem;}
+        .text-0{font-size: 5rem; line-height: 1;margin-bottom: 3rem;}
+        .text-3{font-size: 1.5rem;}
+        .img-res{width: 100%;}
+        .p-4{padding: 4rem;}
+        .titolo{
+            color: white !important;
+        }
+        
+        .link-serie{
+            padding-right: 0rem;
+        }
+        .linkone{
+            padding-right: 3rem !important;
+            color: white !important;
+        }
+        .bit{
+            color: orange;
+        }
+        .testa{
+            background-color: #ad9292;
+            padding-top: 9rem;
+            padding-bottom: 9rem;
+            background-image: url(https://img.freepik.com/free-photo/cool-geometric-triangular-figure-neon-laser-light-great-backgrounds-wallpapers_181624-9331.jpg?w=2000); min-height: 100vh;
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: multiply;
+            
+        }
+        .riga-separa{
+            height: 1px !important;
+            margin: 1rem;
+        }
+        .colonne{
+            padding: 100px 0px;
+            background-color: rgb(239, 236, 230) !important;
+        }
+
+        .link-serie a:hover{
+            color: orange !important;
+            transition: .4s;
+        }
+        .colonna-ceo{
+        margin-top: 5rem !important;
+        }
+
+        .mediaimg{
+          width: 750px;
+          height: 800px;
+        }
+
+        #mediascroll {
+          transform: translateX(-150%);
+          transition: transform 1s ease-in-out;
+        }
+
+        #mediascroll.appear-left {
+          transform: translateX(0);
+        }
+
+        #imagescroll{
+          transform: translateX(150%);
+          transition: 1s ease-in-out;
+        }
+
+        #imagescroll.appear-right {
+          transform: translateX(0);
+        }
+
+        #appear {
+          opacity: 0;
+          transform: scale(0);
+          transition: all .5s ease-in-out;
+        }
+        #appear.show {
+          opacity: 1;
+          transform: scale(1);
+        }
+
+
+        section {
+        position: relative;
+        width: 100%;
+        height: 100%;
+      }
+      section::after {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        content: '';
+        width: 100%;
+        height: 80%;
+        background: -webkit-linear-gradient(top,rgba(0,0,0,0) 0,rgba(0,0,0,.8) 80%,rgba(0,0,0,.8) 100%);
+        background: linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,.8) 80%,rgba(0,0,0,.8) 100%);
+      }
+      section h1 {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        z-index: 2;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        color: #fff;
+        font : normal 300 64px/1 'Josefin Sans', sans-serif;
+        text-align: center;
+        white-space: nowrap;
+      }
+
+      .demo a {
+        position: absolute;
+        bottom: -230px;
+        left: 43%;
+        z-index: 2;
+        display: inline-block;
+        -webkit-transform: translate(0, -50%);
+        transform: translate(0, -50%);
+        color: #fff;
+        font : normal 400 20px/1 'Josefin Sans', sans-serif;
+        letter-spacing: .1em;
+        text-decoration: none;
+        transition: opacity .3s;
+      }
+      .demo a:hover {
+        opacity: .5;
+      }
+
+      #section07 a {
+        padding-top: 80px;
+      }
+      #section07 a span {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 24px;
+        height: 24px;
+        margin-left: -12px;
+        border-left: 1px solid #fff;
+        border-bottom: 1px solid #fff;
+        -webkit-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+        -webkit-animation: sdb07 2s infinite;
+        animation: sdb07 2s infinite;
+        opacity: 0;
+        box-sizing: border-box;
+      }
+      #section07 a span:nth-of-type(1) {
+        -webkit-animation-delay: 0s;
+        animation-delay: 0s;
+      }
+      #section07 a span:nth-of-type(2) {
+        top: 16px;
+        -webkit-animation-delay: .15s;
+        animation-delay: .15s;
+      }
+      #section07 a span:nth-of-type(3) {
+        top: 32px;
+        -webkit-animation-delay: .3s;
+        animation-delay: .3s;
+      }
+      @-webkit-keyframes sdb07 {
+        0% {
+          opacity: 0;
+        }
+        50% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+        }
+      }
+      @keyframes sdb07 {
+        0% {
+          opacity: 0;
+        }
+        50% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+        }
+      }
+
+
+        /* media queries */
+        @media screen and (min-width: 768px) {
+            .testa{
+                padding-top: 18rem;
+                padding-bottom: 18rem; 
+            }
+            .riga-separa{
+            margin: 3rem;
+            }
+            
+
+        }
+
+        @media screen and (max-width: 1468px){
+          .mediaimg{
+            display: none;
+          }
+
+          .text{
+            display: block;
+            text-align: center;
+          }
+
+          .column{
+            width: 100%;
+          }
+          
+        }
+
+    </style>
+  </head>
+  <body>
+    <nav class="nav-home navbar fixed-top navbar-expand-lg bg-transparent ">
+      <div class="container-fluid">
+        <div class="d-flex align-items-baseline">
+          <a id="appear" class="titolo navbar-brand fs-1 fw-bold" href="#"><span class="bit">BITCOIN</span>CIRCLE</a>
+        </div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class=" link-serie collapse navbar-collapse justify-content-end" id="navbarNav">
+          <ul class=" navigazione navbar-nav">
+            <li class="nav-item">
+              <a class=" linkone nav-link fw-semibold" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class=" linkone nav-link fw-semibold" href="#mediatext">About</a>
+            </li>
+          </ul>
+          <div class="me-3">
+            <a href="/register"><button type="button" class=" p-2 btn btn-outline-warning">Signup</button></a>
+            <a href="/login"><button type="button" class="p-2 btn btn-outline-warning">Login</button></a>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <header class="testa text-white text-center">
+      <div class="container">
+        <div class="row">
+          <div class="d-flex flex-column align-items-center col-xl-9 mx-auto">
+            <h1 class="fw-bold">Join the most profitable Bitcoin exchange platform ever!<br>Not like the others.</h1>
+            <p>Registrations open now, hurry!</p>
+              <div class="riga-separa w-25 bg-white"></div>
+              <div class="container-paragrafo">
+                <p>Are you looking for a reliable and profitable platform to trade Bitcoin? Look no further than BITCOINCIRCLE company's new exchange platform! We understand that entering the world of cryptocurrency trading can be daunting, which is why we have designed a platform that is not only easy to use, but also offers a unique incentive for our users.</p>
+              </div>
+              
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <div class="container d-flex justify-content-center">
+              <a href="/register"><button type="button" class=" fw-semibold bottone btn btn-outline-warning">START NOW!</button></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <section id="section07" class="demo">
+        <a href="#mediatext"><span></span><span></span><span></span>Discover how it works</a>
+      </section>
+      
+    </header>
+    <div id="mediatext" class="text grid pb-4">
+      <div id="mediascroll" class="column col-50 mt-4">
+        <h3 class="text-0">Not a typical exchange platform...</h3>
+        <p class="text-3">Upon registration, every user will receive a randomized amount of 1 to 10 Bitcoins as a welcome bonus. This gives our users the opportunity to start trading right away and benefit from the platform's features without any initial investment. And the best part? There are no transaction fees, meaning all profits made from trades are yours to keep.
+
+          Security is of the utmost importance for any cryptocurrency exchange platform, and we at BITCOINCIRCLE have taken all necessary precautions to ensure that our users' funds and personal information are protected. Our platform uses bank-level encryption to safeguard data, and we have a dedicated team constantly monitoring for any fraudulent activity.</p>
+      </div>
+      <div class="col-50">
+        <img id="imagescroll" src="https://img.freepik.com/free-vector/bitcoin-p2p-concept-illustration_114360-713.jpg?w=1380&t=st=1674121775~exp=1674122375~hmac=7c22193817273fb1fa8771f50b63843d21df723c24c1d8357291d4555a70e63e" class="mediaimg img-res p-4" alt="">
+      </div>
+    </div>
+    
+    <script>
+
+      window.addEventListener('scroll', function() {
+        var mediascroll = document.getElementById("mediascroll");
+        var mediascrollPosition = mediatext.getBoundingClientRect().top;
+        var screenPosition = window.innerHeight;
+        if (mediascrollPosition < screenPosition) {
+          setTimeout(function(){
+            mediascroll.classList.add("appear-left");
+          }, 100);
+        }
+      });
+
+      window.addEventListener('scroll', function() {
+        var imagescroll = document.getElementById("imagescroll");
+        var imagescrollPosition = mediatext.getBoundingClientRect().top;
+        var screenPosition = window.innerHeight;
+        if (imagescrollPosition < screenPosition) {
+          setTimeout(function(){
+            imagescroll.classList.add("appear-right");
+          }, 100);
+        }
+      });
+
+      setTimeout(function(){
+        document.getElementById("appear").classList.add("show");
+      }, 20);
+
+    </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+  </body>
+</html>

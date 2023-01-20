@@ -1,0 +1,238 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <title>Dashboard</title>
+</head>
+<body>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            background-color: #333;
+        }
+    
+        
+        .title {
+            font-size: 3em;
+            text-align: center;
+            margin-bottom: 50px;
+            color: orange;
+            margin-top: 30px;
+        }
+
+        .logo{
+            margin-top: 15px;
+        }
+
+        span{color: orange;}
+    
+        
+        .benvenuto {
+            font-size: 1.5em;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+    
+        
+        p {
+            font-size: 1.2em;
+            text-align: center;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+    
+        
+        .pubblica {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        button {
+            padding: 10px 25px;
+            font-size: 24px;
+            text-align: center;
+            cursor: pointer;
+            outline: none;
+            color: #fff;
+            background-color: #04AA6D;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 9px #999;
+            }
+
+            button:hover {background-color: #3e8e41}
+
+            button:active {
+            background-color: #3e8e41;
+            box-shadow: 0 5px #666;
+            transform: translateY(4px);
+            }
+    
+        
+        .messaggi {
+            list-style: none;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+        }
+    
+        .messaggi li {
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+            box-shadow: 2px 2px 5px #ccc;
+            color: #333;
+            font-size: 18px;
+            width: 600px;
+        }
+    
+        
+        .ordini.attivi {
+            margin-top: 50px;
+            text-align: center;
+        }
+    
+        
+        .proffiti-perdite {
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+        
+        .usd-balance{
+            position: relative;
+            right: 37px;
+        }
+        
+        h2{
+            margin-top: 30px;
+        }
+
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 25px;
+        }
+    
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+    
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+            color: #333;
+        }
+    
+        
+        form {
+            display: inline-block;
+        }
+    
+        input[type="submit"] {
+            background-color: red;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out;
+        }
+    
+        input[type="submit"]:hover {
+            background-color: #c81616;
+        }
+    
+        
+        a {
+            color: #4caf50;
+            text-decoration: none;
+            transition: color 0.2s ease-in-out;
+            margin-left: 50px;
+        }
+    
+        a:hover {
+            color: #3e8e41;
+        }
+        
+            .container {
+            width: 80%;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        
+    </style>
+        <div class="logo">
+            <a id="appear" class="titolo navbar-brand fs-1 fw-bold" href="http://127.0.0.1:8000/#"><span class="bit">BITCOIN</span>CIRCLE</a>
+        </div>   
+
+        <div class="container">
+            <h1 class="title">Dashboard</h1>
+            <p class="benvenuto">Welcome, {{ user.username }}</p>
+            <p>BTC balance: {{ user.bitcoin_balance }} </p>
+            <p class="usd-balance">USD balance: {{ user.dollars_balance }} </p>
+            <div class="profit-loss-btc">Profit/Loss BTC: {{profit_loss_btc}}</div>
+            <div class="profit-loss-dollar">Profit/Loss dollar: {{profit_loss_dollar}}</div>           
+            <h2>Place an order</h2>
+            {% if messages %}
+            <ul class="messaggi">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <form method="post" class="pubblica">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Publish</button>
+            </form>
+            <h2 class="ordini attivi">Active Orders</h2>
+            <table class="tabella">
+                <tr>
+                    <th>Tipo</th>
+                    <th>Quantità</th>
+                    <th>Prezzo</th>
+                </tr>
+                {% for order in orders %}
+                <tr>
+                    <td>{{ order.type }}</td>
+                    <td>{{ order.quantity }}</td>
+                    <td>{{ order.price }}</td>
+                    {% if user.id == order.user.id %}
+                        <td>
+                            <form action="{% url 'cancel_order' order_id=order.id %}" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="order_id" value="{{ order.id }}">
+                                <input type="submit" value="Cancel">
+                            </form>
+                        </td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+<script>
+
+    
+    
+</script>
+
+    
+</body>
+</html>

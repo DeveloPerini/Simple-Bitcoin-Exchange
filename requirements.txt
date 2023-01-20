@@ -1,0 +1,3 @@
+django
+djongo
+pymongo==3.12.3
