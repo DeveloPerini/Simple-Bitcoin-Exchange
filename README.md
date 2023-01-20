@@ -14,10 +14,9 @@ The platform's user-friendly interface makes it easy for users to place both buy
 - [Djongo](https://www.djongomapper.com/integrating-django-with-mongodb/)
 - pymongo==3.12.3
 
-### Programming languages:
-- HTML/CSS
-- Python
-- Javascript
+### Built with:
+[![Top Langs](https://github-readme-stats-git-masterrstaa-rickstaa.vercel.app/api/top-langs/?username=DeveloPerini)](https://github.com/DeveloPerini/github-readme-stats)
+
 
 ### Installation:
 1) Clone this repository
