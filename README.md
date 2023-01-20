@@ -14,15 +14,26 @@ The platform's user-friendly interface makes it easy for users to place both buy
 - [Djongo](https://www.djongomapper.com/integrating-django-with-mongodb/)
 - pymongo==3.12.3
 
-### Built with:
 [![Top Langs](https://github-readme-stats-git-masterrstaa-rickstaa.vercel.app/api/top-langs/?username=DeveloPerini)](https://github.com/DeveloPerini/github-readme-stats)
 
 
 ### Installation:
-1) Clone this repository
-2) Create your virtualenvironment with `python -m venv yourvenv`
-3) Install the required dependencies with `pip install -r requirements.txt` 
-4) Run the server with `python manage.py runserver
+1) Clone the repo
+   ```sh
+   git clone https://github.com/DeveloPerini/Bitcoin-exchange.git
+   ```
+2) Create your virtualenvironment with
+   ```sh
+   python -m venv myvenv
+   ```
+3) Install the required dipendencies 
+   ```sh
+   pip install r-requirements.txt
+   ```
+4) Run the server 
+   ```sh
+   python manage.py runserver
+   ```
 
 ### Usage
 Just go to http://localhost:8000, register and enjoy your free Bitcoins! 
